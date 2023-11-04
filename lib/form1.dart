@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grm/form2.dart';
 
 class form1 extends StatefulWidget {
   const form1({super.key});
@@ -21,7 +22,7 @@ class _form1State extends State<form1> {
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
-        lastDate: DateTime(2023));
+        lastDate: DateTime(2026));
   }
 
   @override
@@ -184,9 +185,16 @@ class _form1State extends State<form1> {
                 ),
                 //bottom navigation.
                 Row(children: [
-                  Text("1/5"),
+                  Text("1/3"),
                   Spacer(),
-                  ElevatedButton(onPressed: () {}, child: Text("next"))
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => form2()),
+                        );
+                      },
+                      child: Text("next"))
                 ]),
               ],
             ),

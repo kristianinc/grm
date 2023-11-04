@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:grm/form1.dart';
-import 'package:grm/login.dart';
+import 'package:grm/splashscreen.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: login(),
+    home: Splashscreen(),
     // theme: ThemeData(brightness: Brightness.dark),
     debugShowCheckedModeBanner: false,
   ));
