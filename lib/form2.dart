@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grm/form3.dart';
+import 'package:grm/navbar.dart';
 
 enum gender { male, female }
 
@@ -32,15 +33,14 @@ class _form2State extends State<form2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: navbar(),
+      appBar: AppBar(title: const Text("GRM anti-corruption system")),
       body: Container(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(30),
             child: Column(
               children: [
-                Container(
-                  height: 30,
-                ),
                 // ElevatedButton(
                 //     onPressed: () {
                 //       Navigator.pop(

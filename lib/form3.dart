@@ -1,8 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:grm/form1.dart';
-import 'package:grm/login.dart';
-import 'package:grm/splashscreen.dart';
+import 'package:grm/dashboard.dart';
+import 'package:grm/navbar.dart';
 
 enum gender { male, female }
 
@@ -35,23 +34,14 @@ class _form3State extends State<form3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const navbar(),
+      appBar: AppBar(title: const Text("GRM anti-corruption system")),
       body: Container(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(30),
             child: Column(
               children: [
-                Container(
-                  height: 30,
-                ),
-                // ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.pop(
-                //         context,
-                //         MaterialPageRoute(builder: (context) => form3()),
-                //       );
-                //     },
-                //     child: Text("back")),
                 const Text(
                   'Complainer (if any)',
                   style: TextStyle(
@@ -199,39 +189,12 @@ class _form3State extends State<form3> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const form1()),
+                              //this will submit to success page, which sends data, and displays  a success msg
+                              builder: (context) => const dashboard()),
                         );
                       },
                       child: const Text("Submit")),
                 ]),
-                Container(
-                  height: 20,
-                ),
-                Text("testing buttons (to be removed)"),
-                Row(
-                  children: [
-                    //test buttons
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const login()),
-                          );
-                        },
-                        child: const Text("Login page")),
-                    Spacer(),
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Splashscreen()),
-                          );
-                        },
-                        child: const Text("Splashscreen")),
-                  ],
-                ),
               ],
             ),
           ),

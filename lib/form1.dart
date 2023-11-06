@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grm/form2.dart';
+import 'package:grm/navbar.dart';
+import 'package:intl/intl.dart';
 
 class form1 extends StatefulWidget {
   const form1({super.key});
@@ -12,22 +14,31 @@ class _form1State extends State<form1> {
   _form1State() {
     valuechose = ListItems[0];
   }
-
+//text editing controllers to pick data
+  TextEditingController date = TextEditingController();
   String? valuechose = "";
 
   List ListItems = ['spoken', 'written', 'heard', 'obtained'];
 
-  Future<void> _SelectDate() async {
-    await showDatePicker(
+  Future<DateTime?> _SelectDate() async {
+    final pickeddate = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2000),
         lastDate: DateTime(2026));
+
+    if (pickeddate != null) {
+      setState(() {
+        date.text = DateFormat('dd-MM-yyyy').format(pickeddate);
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: navbar(),
+      appBar: AppBar(title: const Text("GRM anti-corruption system")),
       body: Container(
         child: SingleChildScrollView(
           child: Padding(
@@ -35,16 +46,8 @@ class _form1State extends State<form1> {
             child: Column(
               children: [
                 Container(
-                  height: 30,
+                  height: 5,
                 ),
-                // ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.pop(
-                //         context,
-                //         MaterialPageRoute(builder: (context) => form1()),
-                //       );
-                //     },
-                //     child: Text("back")),
                 const Text(
                   'Submit a grievance',
                   style: TextStyle(
@@ -53,7 +56,7 @@ class _form1State extends State<form1> {
                   ),
                 ),
                 Container(
-                  height: 20,
+                  height: 25,
                 ),
                 TextField(
                   //controller: _acctController,
@@ -81,7 +84,7 @@ class _form1State extends State<form1> {
                   height: 30,
                 ),
                 TextField(
-                    //controller: _acctController,
+                    controller: date,
                     decoration: InputDecoration(
                         labelText: 'Date',
                         filled: true,

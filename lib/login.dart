@@ -1,9 +1,38 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:grm/dashboard.dart';
 import 'package:grm/form1.dart';
+import 'package:http/http.dart' as http;
 
-class login extends StatelessWidget {
-  const login({super.key});
+class login extends StatefulWidget {
+  login({super.key});
 
+  @override
+  State<login> createState() => _loginState();
+}
+
+class _loginState extends State<login> {
+  @override
+  void initState() {
+    register();
+  }
+
+  Map? mapResponse;
+
+  final TextEditingController usernamecontroller = TextEditingController();
+  final TextEditingController passwordcontroller = TextEditingController();
+
+  Future register() async {
+    var url = 'https://milliondollarbaby1.000webhostapp.com/endpoints/get.php';
+    http.Response response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      print(data.toString());
+    }
+  }
+
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +69,7 @@ class login extends StatelessWidget {
                     height: 20,
                   ),
                   TextField(
-                    //controller: _acctController,
+                    controller: usernamecontroller,
                     decoration: InputDecoration(
                         labelText: 'Username',
                         border: OutlineInputBorder(
@@ -50,7 +79,7 @@ class login extends StatelessWidget {
                     height: 30,
                   ),
                   TextField(
-                    //controller: _acctController,
+                    controller: passwordcontroller,
                     decoration: InputDecoration(
                         labelText: 'Password',
                         border: OutlineInputBorder(
@@ -65,9 +94,14 @@ class login extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
+                        //lets send a http request to the api endpoints
+
+                        // register();
+
+                        //route to form1 or dashboard.
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => form1()),
+                          MaterialPageRoute(builder: (context) => dashboard()),
                         );
                       },
                       style: ButtonStyle(

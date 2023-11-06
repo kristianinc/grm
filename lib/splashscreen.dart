@@ -20,7 +20,7 @@ class _SplashscreenState extends State<Splashscreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const login(),
+            builder: (context) => login(),
           ));
     });
   }
@@ -39,4 +39,3 @@ class _SplashscreenState extends State<Splashscreen> {
     );
   }
 }
-
